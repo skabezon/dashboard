@@ -1,0 +1,17 @@
+<% if (!user) { %>
+  <a href="/signin">Signin</a>
+  <a href="/signup">Signup</a>
+  <% } else { %>
+  <a href="/logout">Logout</a>
+  <a href="/profile">Profle</a>
+
+  <% } %>
+
+  <%if (signinMessage) {%>
+    <p><%= signinMessage %></p>
+  <% } %>
+  <%if (signupMessage) {%>
+    <p><%= signupMessage %></p>
+  <% } %>
+
+  <%- body %>
