@@ -1,7 +1,22 @@
 <%- layout('layouts/main') %>
+<div class="container col-7">
+		<table class="table table-hover">
+			  <thead class="thead-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Nombre</th>
+						</tr>
+				</thead>
+				<tbody class="">
+					<%for (let b in bear) {%>
+						<tr>
+							<th scope="row"><%= b %></th>
+							<td><%= bear[b].name %></td>	
+						</tr>
+						<% } %>
+				</tbody>	
 
-<%for (let b in bear) {%>
-    <%= bear[b].name %>
-  <% } %>
-
-  <%= bear%>
+			
+				
+			</table>
+</div>

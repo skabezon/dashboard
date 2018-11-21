@@ -12,6 +12,7 @@ require('./database')
 require('./passport/local-auth')
 
 // settings
+app.use(express.static('public'))
 app.set('port', process.env.PORT || 3000)
 app.set('views', path.join(__dirname, 'views'))
 app.engine('ejs', engine)
@@ -40,7 +41,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use('/', require('./routes/index'))
-
+app.use('/api', require('./routes/api.js'))
 // Starting the server
 app.listen(app.get('port'), () => {
   console.log('server on port', app.get('port'))
