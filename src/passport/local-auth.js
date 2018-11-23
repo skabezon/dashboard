@@ -2,7 +2,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
 const User = require('../models/user')
-const Bears = require('../models/bears')
+
 passport.serializeUser((user, done) => {
   done(null, user.id)
 })
@@ -25,9 +25,7 @@ passport.use('local-signup', new LocalStrategy({
     const newUser = new User()
     newUser.email = email
     newUser.password = newUser.encryptPassword(password)
-    console.log('hola')
     console.log(newUser)
-    console.log('hola')
     await newUser.save()
     done(null, newUser)
   }
@@ -38,7 +36,6 @@ passport.use('local-signin', new LocalStrategy({
   passwordField: 'password',
   passReqToCallback: true
 }, async (req, email, password, done) => {
-  const hola = await Bears.find()
   const user = await User.findOne({ email: email })
   if (!user) {
     return done(null, false, req.flash('signinMessage', 'No existe el usuario'))
@@ -46,6 +43,5 @@ passport.use('local-signin', new LocalStrategy({
   if (!user.comparePassword(password)) {
     return done(null, false, req.flash('signinMessage', 'Password incorrecta'))
   }
-  console.log(hola)
-  return done(null, user, hola)
+  return done(null, user)
 }))
